@@ -1,0 +1,37 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "lade-incentive-engine"
+version = "0.1.0"
+description = "Last-mile supply-demand and incentive targeting analytics engine for LaDe-style delivery data."
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{ name = "Ozzy Orka" }]
+dependencies = [
+  "duckdb>=1.0.0",
+  "numpy>=1.24",
+  "pandas>=2.0",
+  "scipy>=1.10",
+  "statsmodels>=0.14",
+  "streamlit>=1.35",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "ruff>=0.5"]
+
+[project.scripts]
+lade-engine = "lade_engine.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/lade_engine"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
