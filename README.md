@@ -1,8 +1,24 @@
 # Last-Mile Supply-Demand & Incentive Targeting Engine
 
 End-to-end analytics project on the public [LaDe dataset](https://huggingface.co/datasets/Cainiao-AI/LaDe) — 4.5 million last-mile delivery records across five Chinese cities. The project identifies why delivery delays concentrate in certain cities and couriers, disproves a geography explanation, and produces city-specific operational recommendations.
+<p align="center">
+  <a href="https://www.genspark.ai/api/files/s/yqrenh9d">
+    <video
+      src="assets/dashboard_preview.mp4"
+      autoplay loop muted playsinline
+      width="100%"
+      poster="assets/dashboard_preview.gif"
+      style="border-radius: 12px; max-width: 1100px;">
+      <source src="assets/dashboard_preview.mp4" type="video/mp4">
+      <source src="assets/dashboard_preview.webm" type="video/webm">
+      <img src="assets/dashboard_preview.gif" alt="Live dashboard preview" width="100%" />
+    </video>
+  </a>
+</p>
 
-<img width="1416" height="926" alt="dashboard_preview" src="https://github.com/user-attachments/assets/cd20008b-f824-4656-8601-ce9c74f2ba9e" />
+<p align="center">
+  <a href="https://www.genspark.ai/api/files/s/yqrenh9d"><b>▶ Open Live Dashboard</b></a>
+</p>
 
 
 ---
