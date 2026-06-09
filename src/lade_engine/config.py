@@ -12,6 +12,7 @@ class ProjectPaths:
     root: Path = PROJECT_ROOT
     raw_data: Path = PROJECT_ROOT / "data" / "raw"
     processed_data: Path = PROJECT_ROOT / "data" / "processed"
+    real_data: Path = PROJECT_ROOT / "real_data"
     reports: Path = PROJECT_ROOT / "reports"
     sql: Path = PROJECT_ROOT / "sql"
 

@@ -5,6 +5,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
+from .config import PATHS
 from .schema import REQUIRED_COLUMNS
 
 
@@ -50,6 +51,34 @@ def normalize_lade_frame(df: pd.DataFrame) -> pd.DataFrame:
     df["ds"] = pd.to_datetime(df["ds"], errors="coerce").dt.date.astype(str)
     df["hour"] = df["accept_time"].dt.hour
     df["zone_id"] = df["city"].astype(str) + "_" + df["region_id"].astype(str)
+    return df
+
+
+def load_lade_parquet(path: Path | None = None) -> pd.DataFrame:
+    """
+    Load and clean the real LaDe delivery dataset (Hugging Face, ~190 MB parquet).
+
+    Schema differences vs the synthetic pipeline:
+    - Timestamps are 'MM-DD HH:MM:SS' strings (no year); we prepend 2023.
+    - No pickup_time column; end-to-end = accept → delivery.
+    - Jilin is a pilot city (~20% of Yantai's daily volume); flagged but kept.
+
+    Rows with delivery_minutes <= 0 are dropped:
+    - Zero: courier scanned accept and delivery in the same minute ("instant scan" artifact).
+    - Negative: three records with corrupted timestamps.
+    """
+    path = path or (PATHS.real_data / "delivery_all.parquet")
+    df = pd.read_parquet(path)
+
+    for col in ("accept_time", "delivery_time"):
+        df[col] = pd.to_datetime("2023-" + df[col], format="%Y-%m-%d %H:%M:%S", errors="coerce")
+
+    df["delivery_minutes"] = (df["delivery_time"] - df["accept_time"]).dt.total_seconds() / 60
+    df = df[df["delivery_minutes"] > 0].reset_index(drop=True)
+
+    df["is_pilot"] = df["city"] == "Jilin"
+    df["accept_hour"] = df["accept_time"].dt.hour
+
     return df
 
 

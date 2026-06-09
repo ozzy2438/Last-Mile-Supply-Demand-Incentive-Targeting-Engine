@@ -14,4 +14,6 @@ reports/*
 *.duckdb
 *.db
 .env
+real_data/
+!real_data/.gitkeep
 
