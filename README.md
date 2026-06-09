@@ -2,6 +2,9 @@
 
 End-to-end analytics project on the public [LaDe dataset](https://huggingface.co/datasets/Cainiao-AI/LaDe) — 4.5 million last-mile delivery records across five Chinese cities. The project identifies why delivery delays concentrate in certain cities and couriers, disproves a geography explanation, and produces city-specific operational recommendations.
 
+<img width="1416" height="926" alt="dashboard_preview" src="https://github.com/user-attachments/assets/cd20008b-f824-4656-8601-ce9c74f2ba9e" />
+
+
 ---
 
 ## Key Findings
